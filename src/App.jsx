@@ -253,7 +253,7 @@ export default function App() {
 function Heading() {
   return (
     <div className="header-container">
-      <p className="heading">Map-My-Moments</p>
+      <p className="heading">Wander-Map-List</p>
     </div>
   );
 }
