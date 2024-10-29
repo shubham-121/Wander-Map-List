@@ -37,10 +37,21 @@ const app_features = {
   setDate: "",
   event: false,
   setEvent: "", //set the event type
+  note: false,
+  noteArray: [], //push notes to this array
+  setNote: "", //note variable for storing a note
+  filesArray: [],
+  notification: null,
+  setNotification: null,
+};
+
+const side_menu = {
+  isMenuOpen: false, //to toggle  the side menu on and off
 };
 
 //prettier-ignore
 const FeatureContext = createContext();
+const Side_Menu = createContext();
 
 function reducer(state, action) {
   switch (action.type) {
@@ -170,6 +181,36 @@ function reducer(state, action) {
         setEvent: action.payload,
       };
 
+    case "Features/Itinerary/SetNote":
+      console.log("note received");
+      return {
+        ...state,
+        setNote: action.payload,
+      };
+
+    case "Features/Itinerary/AddNoteToArray":
+      console.log("Note array before update:", state.noteArray);
+      const updatedNote = [...state.noteArray, action.payload];
+      console.log("Note array after update:", updatedNote);
+      return {
+        ...state,
+        noteArray: [...state.noteArray, action.payload],
+      };
+
+    case "Features/Itinerary/ClearNoteField":
+      return {
+        ...state,
+        setNote: action.payload,
+      };
+
+    case "Features/Itinerary/UploadFiles":
+      const updatedFiles = [...state.filesArray, action.payload];
+      console.log("Files array:", updatedFiles);
+      return {
+        ...state,
+        files: updatedFiles,
+      };
+
     default:
       return state;
   }
@@ -217,7 +258,57 @@ export default function App() {
 function Heading() {
   return (
     <div className="header-container">
-      <p className="heading">Map-My-Moments</p>
+      <HamMenu></HamMenu>
+      <p className="heading">Wander-Map-List</p>
+    </div>
+  );
+}
+
+function HamMenu() {
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { state, dispatch } = useContext(FeatureContext);
+  const { isMenuOpen } = state;
+
+  function handleMenu(e) {
+    // setIsMenuOpen(!isMenuOpen);
+    dispatch({ type: "Features/" });
+  }
+  return (
+    <div>
+      <button className="ham-menu" onClick={handleMenu}></button>
+      {isMenuOpen && <SideMenu></SideMenu>}
+    </div>
+  );
+}
+
+function SideMenu() {
+  return (
+    <div className="side-menu">
+      <button className="menu-close-btn">X</button>
+      <input
+        className="side-menu-search"
+        type="text"
+        placeholder="search here"
+      ></input>
+      <a className="side-menu-option">Home</a>
+      <a className="side-menu-option">About Us</a>
+      <a className="side-menu-option">Help</a>
+      <a className="side-menu-option">Contact Us</a>
+      <br />
+      <p className="side-menu-para">Your Data</p>
+      <button className="side-menu-option">Itinerary</button>
+
+      <button className="side-menu-option">Favorites</button>
+      <button className="side-menu-option">Wishlist</button>
+      <button className="side-menu-option">Visited Locations</button>
+
+      <div className="log-out">
+        <img
+          className="user-pic"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwnYnwftDUSjsQmLQvMBZ2pwDXhAJiIdfKvg&s"
+        ></img>
+        <button className="log-out-btn">Log Out</button>
+      </div>
     </div>
   );
 }
@@ -568,12 +659,6 @@ function AddDate() {
     dispatch({ type: "Features/Itinerary/ToggleDateBox" });
   }
 
-  // function handleSelectEvent(e) {
-  //   //store the  event from the options menu
-  //   console.log(e.target.value);
-  //   // dispatch({ type: "Features/Itinerary/AddEvent", payload: e.target.value });
-  // }
-
   function handleSelectEvent(e) {
     console.log(e.target.value);
     dispatch({ type: "Features/Itinerary/AddEvent", payload: e.target.value });
@@ -628,29 +713,95 @@ function AddDate() {
       </p>
       <div>
         <p>Leave a note here for the {setEvent} event! 📒</p>
-        <div className="addNote-noteBtns">
-          <input
-            type="text"
-            placeholder="Enter a note here"
-            className="addNote"
-          ></input>
-          <button className="add-noteBtn">Add Note</button>
-          <button className="add-noteBtn">Clear</button>
-          <span className="fileText">Enter any attachments below:</span>
-          <div className="file-inputFlex">
-            <input
-              type="file"
-              className="file-input"
-              placeholder="Enter Image"
-            ></input>
-            <button className="file-input-btn">Upload!</button>
-          </div>
-        </div>
+        <LeaveNote></LeaveNote>
       </div>
     </div>
   );
 }
 //add store note functionality and clear note btn functionality
+
+function LeaveNote() {
+  const { state, dispatch } = useContext(FeatureContext);
+  const { note, noteArray, setNote } = state; // note:false , noteArray:[], setNote:""
+  const [inputText, setInputText] = useState(""); //state for debouncing while user types
+  const [files, setFiles] = useState();
+  const [notification, setNotification] = useState(null);
+
+  function handleInputChange(e) {
+    setInputText(e.target.value);
+  }
+
+  function handleNoteArray() {
+    //push the note to the NoteArray
+    dispatch({ type: "Features/Itinerary/AddNoteToArray", payload: setNote });
+    dispatch({ type: "Features/Itinerary/SetNote", payload: "" });
+    setInputText("");
+    console.log("Updated note array:", noteArray);
+  }
+
+  function clearNoteField() {
+    setInputText("");
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch({ type: "Features/Itinerary/SetNote", payload: inputText });
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [inputText, dispatch]);
+
+  function handleFileChange(e) {
+    setFiles(Array.from(e.target.files));
+    console.log(Array.from(e.target.files));
+  }
+
+  function handleFileUpload() {
+    //upload files in file array
+    if (files.length > 0) {
+      dispatch({ type: "Features/Itinerary/UploadFiles", payload: files });
+      showNotification(" File Upload successfull ✌️");
+    } else alert("Select files first");
+  }
+
+  function showNotification(message) {
+    setNotification(message);
+    setTimeout(() => setNotification(null), 3000);
+  }
+
+  return (
+    <div className="addNote-noteBtns">
+      <input
+        type="text"
+        placeholder="Enter a note here"
+        className="addNote"
+        onChange={handleInputChange}
+        value={inputText}
+      ></input>
+      <button className="add-noteBtn" onClick={handleNoteArray}>
+        Add Note
+      </button>
+      <button className="add-noteBtn" onClick={clearNoteField}>
+        Clear
+      </button>
+      <span className="fileText">Enter any attachments below:</span>
+      <div className="file-inputFlex">
+        <input
+          type="file"
+          className="file-input"
+          placeholder="Enter Image"
+          multiple
+          onChange={handleFileChange}
+        ></input>
+        <button className="file-input-btn" onClick={handleFileUpload}>
+          Upload!
+        </button>
+
+        {notification && <div className="notification">{notification}</div>}
+      </div>
+    </div>
+  );
+}
 
 function SearchBar({
   location,
@@ -1051,3 +1202,14 @@ function LocationMarker({
 
 //next task
 //add state to select tags, notes, add note, clear fiel and enter attachments
+
+function Navigation() {
+  return (
+    <nav>
+      <option>Home</option>
+      <option>About us</option>
+
+      <option>Contact us</option>
+    </nav>
+  );
+}
