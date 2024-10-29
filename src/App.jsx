@@ -1147,3 +1147,14 @@ function LocationMarker({
 
 //next task
 //add state to select tags, notes, add note, clear fiel and enter attachments
+
+function Navigation() {
+  return (
+    <nav>
+      <option>Home</option>
+      <option>About us</option>
+
+      <option>Contact us</option>
+    </nav>
+  );
+}
