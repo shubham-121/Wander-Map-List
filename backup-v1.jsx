@@ -45,13 +45,13 @@ const app_features = {
   setNotification: null,
 };
 
-const side_menu = {
+const menu_features = {
   isMenuOpen: false, //to toggle  the side menu on and off
 };
 
 //prettier-ignore
 const FeatureContext = createContext();
-const Side_Menu = createContext();
+const MenuContext = createContext();
 
 function reducer(state, action) {
   switch (action.type) {
@@ -216,41 +216,62 @@ function reducer(state, action) {
   }
 }
 
+function menuReducer(state, action) {
+  switch (action.type) {
+    case "SideMenu/ToggleOnAndOff":
+      return {
+        ...state,
+        isMenuOpen: !state.isMenuOpen,
+      };
+    default:
+      return 0;
+  }
+}
+
+// const menu_features = {
+//   isMenuOpen: false, //to toggle  the side menu on and off
+// };
+
+// const MenuContext = createContext(menu_features);
+
 export default function App() {
   const [location, setLocation] = useState(""); //search location
   const [coords, setCoords] = useState(null); //search location coords for geocoding
   const [lastValidLocation, setLastValidLocation] = useState("");
 
-  const [state, dispatch] = useReducer(reducer, app_features);
+  const [state, dispatch] = useReducer(reducer, app_features); //context for managing features
+  const [menuState, menuDispatch] = useReducer(menuReducer, menu_features); //context for managing side menu
 
   const { isFav, isWish, isVisited, isItinerary } = state;
   console.log(isFav, isWish, isVisited, isItinerary);
 
   return (
     <FeatureContext.Provider value={{ state, dispatch }}>
-      <div className="main-box">
-        <Heading></Heading>
-        <SearchBar
-          location={location}
-          setLocation={setLocation}
-          coords={coords}
-          setCoords={setCoords}
-          setLastValidLocation={setLastValidLocation}
-        ></SearchBar>
-        <LoadMap
-          location={location}
-          setLocation={setLocation}
-          coords={coords}
-          setCoords={setCoords}
-          lastValidLocation={lastValidLocation}
-        ></LoadMap>
-        {/* conditionally render the features component */}
-        {/* make isFav and isVist false before rendering this */}
-        {isFav && <Favourites></Favourites>}
-        {isWish && <WishList></WishList>}
-        {isVisited && <Visited></Visited>}
-        {isItinerary && <Itinerary></Itinerary>}
-      </div>
+      <MenuContext.Provider value={{ menuState, menuDispatch }}>
+        <div className="main-box">
+          <Heading></Heading>
+          <SearchBar
+            location={location}
+            setLocation={setLocation}
+            coords={coords}
+            setCoords={setCoords}
+            setLastValidLocation={setLastValidLocation}
+          ></SearchBar>
+          <LoadMap
+            location={location}
+            setLocation={setLocation}
+            coords={coords}
+            setCoords={setCoords}
+            lastValidLocation={lastValidLocation}
+          ></LoadMap>
+          {/* conditionally render the features component */}
+          {/* make isFav and isVist false before rendering this */}
+          {isFav && <Favourites></Favourites>}
+          {isWish && <WishList></WishList>}
+          {isVisited && <Visited></Visited>}
+          {isItinerary && <Itinerary></Itinerary>}
+        </div>
+      </MenuContext.Provider>
     </FeatureContext.Provider>
   );
 }
@@ -266,12 +287,12 @@ function Heading() {
 
 function HamMenu() {
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { state, dispatch } = useContext(FeatureContext);
-  const { isMenuOpen } = state;
+
+  const { menuState, menuDispatch } = useContext(MenuContext);
+  const { isMenuOpen } = menuState;
 
   function handleMenu(e) {
-    // setIsMenuOpen(!isMenuOpen);
-    dispatch({ type: "Features/" });
+    menuDispatch({ type: "SideMenu/ToggleOnAndOff" });
   }
   return (
     <div>
@@ -282,9 +303,18 @@ function HamMenu() {
 }
 
 function SideMenu() {
+  const { menuState, menuDispatch } = useContext(MenuContext);
+  const { isMenuOpen } = menuState;
+
+  function closeSideMenu(e) {
+    menuDispatch({ type: "SideMenu/ToggleOnAndOff" });
+  }
+
   return (
     <div className="side-menu">
-      <button className="menu-close-btn">X</button>
+      <button className="menu-close-btn" onClick={closeSideMenu}>
+        X
+      </button>
       <input
         className="side-menu-search"
         type="text"
@@ -295,7 +325,7 @@ function SideMenu() {
       <a className="side-menu-option">Help</a>
       <a className="side-menu-option">Contact Us</a>
       <br />
-      <p className="side-menu-para">Your Data</p>
+      <p className="side-menu-para">Categories</p>
       <button className="side-menu-option">Itinerary</button>
 
       <button className="side-menu-option">Favorites</button>
