@@ -1,0 +1,185 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.outer-box {
+  background-image: url(https://images.travelandleisureasia.com/wp-content/uploads/sites/3/2024/09/21141044/world-tourism-day.jpeg?tr=w-1366,f-jpg,pr-true);
+  z-index: 1000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 105vh;
+  width: 100vw;
+  margin-top: 10px;
+  position: relative;
+  bottom: 2%;
+}
+.header {
+  display: flex;
+  /* border: 2px solid black; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+  width: 86vw;
+  gap: 35px;
+  margin-left: 10vw;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  /* border: 2px solid black; */
+  flex-wrap: nowrap;
+  width: 70vw;
+  text-decoration: underline;
+}
+.nav-links {
+  font-size: large;
+  font-weight: 600;
+}
+.app-name {
+  font-size: 21px;
+  font-weight: 900;
+  text-shadow: 5px 4px 11px BLACK;
+  margin-left: 20px;
+  width: 33vw;
+  text-align: center;
+}
+.logo-btn {
+  border-radius: 40px;
+  background-image: url(https://cdn-icons-png.flaticon.com/512/167/167642.png);
+  background-size: contain;
+  width: 121px;
+  height: 42px;
+  background-repeat: no-repeat;
+}
+.search-bar {
+  width: 12vw;
+  height: 5.5vh;
+  margin-right: 18px;
+  margin-top: 6px;
+  opacity: 0.3;
+}
+.search-btn {
+  border-radius: 32px;
+  width: 6vw;
+  height: 29px;
+  position: relative;
+  right: 86px;
+  z-index: 2000;
+}
+.user-btn {
+  border-radius: 21px;
+  position: relative;
+  right: 2%;
+  margin-right: 12px;
+  height: 29px;
+  width: 75px;
+  opacity: 0.7;
+  background-size: contain;
+  background-image: url(https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg);
+}
+
+.body-content {
+  display: flex;
+  margin-top: 10vh;
+  /* border: 2px solid black; */
+  display: flex;
+  width: 35vw;
+  height: 55vh;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 40px;
+}
+
+.body-content-para {
+  font: 40px;
+}
+
+.body-content-heading {
+  font-weight: 600;
+  font-size: 55px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(43, 41, 41);
+  font-style: normal;
+  text-shadow: 4px 6px 9px rgb(64, 62, 62);
+}
+#follow-up {
+  margin-top: 17px;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(43, 41, 41);
+  text-shadow: 11px 6px 5px rgb(64, 62, 62);
+}
+.body-content-btn {
+  border-radius: 36px;
+  font-weight: 700;
+  height: 50px;
+  width: 155px;
+  z-index: 2000;
+  opacity: 0.8;
+  position: relative;
+  right: 36.5%;
+  margin-top: 25px;
+  background-color: rgba(225, 225, 225, 0.629);
+}
+.body-content-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 59px 56px 50px rgba(221, 215, 215, 0.167);
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 24vh;
+  gap: 73px;
+  margin-left: 25vw;
+  opacity: 1;
+}
+
+.small-boxes {
+  opacity: 0.85;
+  border-radius: 30px;
+  border: 2px solid rgb(82, 76, 76);
+  width: 18vw;
+  height: 23.5vh;
+  background-color: rgba(241, 235, 235, 0.486);
+  backdrop-filter: blur(8px);
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.small-boxes:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 20px rgba(77, 76, 76, 0.4);
+}
+
+.small-boxes-heading {
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  color: rgb(38, 38, 39);
+  text-shadow: 2px 2px 12px rgb(38, 38, 39);
+}
+
+.small-boxes-line-break {
+  border-radius: 30px;
+  background-color: rgb(38, 38, 39);
+  width: 15vw;
+  height: 4px;
+  margin-left: 25px;
+}
+
+.small-boxes-content {
+  margin-top: 15px;
+  font-weight: 900;
+  overflow: auto;
+  text-align: center;
+  color: rgb(38, 38, 39);
+}

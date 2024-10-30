@@ -21,7 +21,7 @@ function Header() {
         <a className="nav-links">Pricing</a>
         <a className="nav-links">Contact Us</a>
       </div>
-      <input type="text" className="search-bar"></input>
+      <input placeholder="search..." type="text" className="search-bar"></input>
       <button className="search-btn">🔍</button>
       <button className="user-btn"></button>
     </div>
