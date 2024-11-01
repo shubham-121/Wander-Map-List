@@ -1,0 +1,7 @@
+Steps for git commit and push to repo: 
+
+git init
+git add .
+git commit -m "Initial commit"        //use everytime when there is change in the code
+git remote add origin <repository-url>
+git push -u origin main           //-u flag makes the git directory as default for future actions
