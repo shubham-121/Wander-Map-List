@@ -40,11 +40,11 @@ function MainBody() {
         <img className="image" src={img}></img>
         <div className="main-body-heading">
           <p className="middle-content-heading">
-            Our Mission is to offer you hope and freedom.
+            Your Travel Companion: Save, Organize, and Explore.
           </p>
           <p className="middle-content">
-            At Wander Map List, our mission is to make travel planning as
-            exciting as the journey itself.
+            Embrace the world with confidence—Wander Map List is here to
+            simplify your travel planning, one step at a time.
           </p>
         </div>
       </div>
@@ -54,19 +54,23 @@ function MainBody() {
 
 function MainContent() {
   return (
-    <div style={{ display: "flex" }}>
-      <img className="img1" src={taxiimg}></img>
+    <div>
       <div className="main-content">
-        <p id="content1">About Us:</p>
-        <p id="content2">
-          Welcome to Wander Map List! Wander Map List is designed for explorers,
-          adventurers, and dreamers who want a seamless way to organize their
-          travel goals. We understand that planning a trip involves more than
-          just picking a destination — it’s about curating experiences, keeping
-          track of the places that inspire you, and turning ideas into action.
-          Our app brings your travel plans to life by helping you save,
-          organize, and map out your journey in a single, easy-to-use platform.
-        </p>
+        <img className="img1" src={taxiimg}></img>
+        <div className="mid-content">
+          <p id="content1">About Us:</p>
+          <p id="content2">
+            Welcome to Wander Map List! Wander Map List is designed for
+            explorers, adventurers, and dreamers who want a seamless way to
+            organize their travel goals. We understand that planning a trip
+            involves more than just picking a destination — it’s about curating
+            experiences, keeping track of the places that inspire you, and
+            turning ideas into action. Our app brings your travel plans to life
+            by helping you save, organize, and map out your journey in a single,
+            easy-to-use platform.
+          </p>
+        </div>
+
         <img className="img2" src={worldimg}></img>
       </div>
     </div>
@@ -108,6 +112,7 @@ function DetailedContent() {
         We’re excited to help you explore the world, one destination at a time.
         With Wander Map List, your next adventure is only a click away!
       </p>
+      <button className="join-btn">Join Us Today!</button>
     </div>
   );
 }
