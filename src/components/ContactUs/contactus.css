@@ -1,14 +1,17 @@
 .header {
+  /* padding: 5px; */
   display: flex;
-  /* border: 2px solid black; */
+  border: 2px solid black;
   justify-content: center;
   align-items: center;
-  margin-top: 2vh;
+  margin-top: 1px;
   width: 86vw;
   gap: 35px;
-  margin-left: 10vw;
-  background-color: #e1e5ea;
-  border-radius: 20px;
+  margin-left: 0vw;
+  /* background-color: #e1e5ea; */
+  border-radius: 5px;
+  background: linear-gradient(270deg, #606161, #d4d6d9);
+  width: 100%;
 }
 
 .links {
@@ -69,14 +72,16 @@
 }
 
 .middlebody {
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   /* border: 2px solid black; */
-  margin-top: 6vh;
+  margin-top: 1px;
   font-size: large;
   font-weight: 1000;
   text-align: justify;
   gap: 2vw;
+  background: linear-gradient(180deg, rgb(220, 204, 204), rgb(141, 135, 135));
 }
 
 .middlebody-btn {
@@ -84,11 +89,14 @@
   width: 6vw;
   border-radius: 24px;
   height: 24px;
+  z-index: 2000;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .middlebody-btn:hover {
   transform: scale(1.2);
+  animation-name: closebtn;
+  animation-duration: 3s;
 }
 
 .contact-form {
@@ -159,8 +167,10 @@
   display: flex;
   height: 53vh;
   width: 41vw;
-  border-radius: 49px;
-  background-color: lightgreen;
+  border-radius: 30px;
+  /* background-color: lightgreen; */
+  background: linear-gradient(270deg, #2a5298, #8dace5);
+
   /* border: 2px solid black; */
 }
 
@@ -196,7 +206,26 @@
   width: 30px;
   position: relative;
   bottom: 86%;
-  left: 94%;
+  left: 92%;
+}
+.close-btn:hover {
+  animation-name: closebtn;
+  animation-duration: 5s;
+  animation-timing-function: ease-in;
+}
+@keyframes closebtn {
+  0% {
+    transform: scale(1.2);
+    /* transform: rotate(90deg); */
+  }
+  50% {
+    transform: scale(1.2);
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: scale(1.5);
+    transform: rotate(360deg);
+  }
 }
 .footer {
   position: relative;
@@ -207,10 +236,13 @@
   /* border: 2px solid black; */
   right: 25.5%;
   color: #f8f8ff;
-  background: linear-gradient(135deg, #1b335f, #2a5298);
+
+  background: linear-gradient(270deg, rgb(144, 215, 144), rgb(58, 61, 58));
+
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   text-align: center;
+  height: 35vh;
 }
 
 .footer-content {
@@ -222,6 +254,7 @@
   justify-content: center;
   align-items: stretch;
   max-width: 1200px;
+  margin-top: 45px;
 }
 
 .footer-links {
@@ -248,4 +281,20 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 700;
+}
+
+.footer-socials img {
+  width: 32px; /* Set the desired width */
+  height: 32px; /* Set the desired height */
+  margin: 0 8px; /* Add spacing between icons */
+  transition: transform 0.3s ease; /* Smooth hover transition */
+}
+
+.footer-socials img:hover {
+  transform: scale(1.2); /* Scale up on hover */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+#nameinput {
+  margin-right: 35px;
 }
