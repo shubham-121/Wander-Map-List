@@ -1,0 +1,114 @@
+body {
+  /* background-image: url("itinerary.jpg"); */
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh; */
+  overflow: auto;
+}
+
+.outer-box {
+  background-image: url(https://images.travelandleisureasia.com/wp-content/uploads/sites/3/2024/09/21141044/world-tourism-day.jpeg?tr=w-1366,f-jpg,pr-true);
+  z-index: 1000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 105vh;
+  width: 100vw;
+  margin-top: 10px;
+  position: relative;
+  bottom: 2%;
+}
+.header {
+  display: flex;
+  /* border: 2px solid black; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 0px;
+  width: 99.5vw;
+  gap: 35px;
+  margin-left: 2px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  /* border: 2px solid black; */
+  flex-wrap: nowrap;
+  width: 70vw;
+  text-decoration: underline;
+}
+.nav-links {
+  font-size: large;
+  font-weight: 600;
+}
+.app-name {
+  font-size: 21px;
+  font-weight: 900;
+  text-shadow: 5px 4px 11px BLACK;
+  margin-left: 20px;
+  width: 33vw;
+  text-align: center;
+}
+.logo-btn {
+  border-radius: 40px;
+  background-image: url(https://cdn-icons-png.flaticon.com/512/167/167642.png);
+  background-size: contain;
+  width: 121px;
+  height: 42px;
+  background-repeat: no-repeat;
+}
+.search-bar {
+  width: 12vw;
+  height: 5.5vh;
+  margin-right: 18px;
+  margin-top: 6px;
+  opacity: 0.3;
+}
+.search-btn {
+  border-radius: 32px;
+  width: 7vw;
+  height: 36px;
+  position: relative;
+  right: 86px;
+  z-index: 2000;
+}
+.user-btn {
+  border-radius: 21px;
+  position: relative;
+  right: 2%;
+  margin-right: 12px;
+  height: 29px;
+  width: 75px;
+  opacity: 0.7;
+  background-size: contain;
+  background-image: url(https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg);
+}
+
+.mid-body {
+  background-image: url("itinerary.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+  height: 95vh;
+  margin-top: 5px;
+}
+
+.mid-content {
+  background-color: rgb(109, 105, 105);
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  width: 98vw;
+  height: 90vh;
+  margin: 10px;
+}

@@ -96,7 +96,7 @@
 .middlebody-btn:hover {
   transform: scale(1.2);
   animation-name: closebtn;
-  animation-duration: 3s;
+  animation-duration: 1s;
 }
 
 .contact-form {
