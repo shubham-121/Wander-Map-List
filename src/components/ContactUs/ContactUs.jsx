@@ -19,21 +19,6 @@ const contact_state = {
 };
 const ContactContext = createContext();
 
-// function handleName(e) {
-//   dispatch({ type: "Contact/Name", payload: e.target.value });
-// }
-// function handlePhoneNumber(e) {
-//   dispatch({ type: "Contact/PhoneNumber", payload: e.target.value });
-// }
-// function handleEmail(e) {
-//   dispatch({ type: "Contact/Email", payload: e.target.value });
-// }
-// function handleFormSubmit() {
-//   dispatch({ type: "Contact/FormSubmit" });
-// }
-// function handleClearForm() {
-//   dispatch({ type: "Contact/ClearForm" });
-// }
 
 function reducer(state, action) {
   switch (action.type) {
