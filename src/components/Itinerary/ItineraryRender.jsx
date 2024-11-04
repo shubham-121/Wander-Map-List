@@ -1,5 +1,5 @@
 import "./itineraryrender.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { FeatureContext } from "../../FeatureContext";
 
 // const app_features = {
@@ -22,6 +22,23 @@ import { FeatureContext } from "../../FeatureContext";
 //   notification: null,
 //   setNotification: null,
 // };
+
+// const unsplash_accessKey = "sdmRNH8DPYI5RSmsPhYsry-KpTkwv7QDTIS2k3z8lj8";
+// const unsplash_secretKey = "y3bCPQhOFgmFrw1coB5sdI_1tNJEBRWsn6kKAKF-C6o";
+// const api = `https://api.unsplash.com/photos/?client_id=${unsplash_accessKey}`;
+// const api2 = `https://api.unsplash.com/photos?query=NewYork&client_id=${unsplash_accessKey}`;
+
+//   useEffect(() => {
+//     async function getLocImage() {
+//       const res = await fetch(
+//         `https://api.unsplash.com/search/photos?query=Dehradun&client_id=${unsplash_accessKey}`
+//       );
+//       const data = await res.json();
+//       const img = data.results[0].urls.full;
+//       console.log(img);
+//     }
+//     getLocImage();
+//   }, []);
 
 const itineraryItems = [
   "Kaulagarh Road, Dehradun, Dehradun - 248001, Uttarakhand, India",
@@ -88,6 +105,7 @@ function ItineraryRenderer({ location }) {
   function openNote() {
     setNotes(!notes);
   }
+
   return (
     <div className="render-component">
       <li className="list-items">
