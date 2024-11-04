@@ -1,5 +1,5 @@
 import "./itineraryrender.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FeatureContext } from "../../FeatureContext";
 
 // const app_features = {
@@ -22,6 +22,17 @@ import { FeatureContext } from "../../FeatureContext";
 //   notification: null,
 //   setNotification: null,
 // };
+
+const itineraryItems = [
+  "Kaulagarh Road, Dehradun, Dehradun - 248001, Uttarakhand, India",
+  "Shaheed Kashmirasingh Road, Dehradun, Dehradun - 248001, Uttarakhand, India",
+  "Professor Ram Nath Vij Marg, New Rajendra Nagar, New Delhi - 110060, Delhi, India",
+  "Satguru Ram Singh Marg, Delhi Cantonment, New Delhi - 110064, Delhi, India",
+  "Guru Virjanand Marg, Vikaspuri, - 110018, Delhi, India",
+  "Satguru Ram Singh Marg, Delhi Cantonment, New Delhi - 110064, Delhi, India",
+  "Guru Virjanand Marg, Vikaspuri, - 110018, Delhi, India",
+];
+
 export default function Itinerary() {
   return (
     <div>
@@ -51,12 +62,59 @@ function Header() {
 
 function MiddleContent() {
   const { state, dispatch } = useContext(FeatureContext);
-  console.log(state);
+
   return (
-    <div className="mid-body">
-      <div className="mid-content">
-        <p>Explore the world with a smile</p>
+    <div className="middlecontent">
+      <p className="title">Explore the world with a smile</p>
+      <p className="title">Your Itinerary Below</p>
+
+      <div className="itinerary-container">
+        <ol>
+          {itineraryItems.map((location, idx) => (
+            <ItineraryRenderer
+              location={location}
+              key={idx}
+            ></ItineraryRenderer>
+          ))}
+        </ol>
       </div>
+    </div>
+  );
+}
+
+function ItineraryRenderer({ location }) {
+  const [notes, setNotes] = useState(false);
+
+  function openNote() {
+    setNotes(!notes);
+  }
+  return (
+    <div className="render-component">
+      <li className="list-items">
+        {location}
+        <div className="date-container">
+          <p className="date"> Date: 30-06-2003</p>
+          <button className="btn-remove">Remove</button>
+          <button className="btn-remove" onClick={openNote}>
+            Note
+          </button>
+        </div>
+      </li>
+      {notes && <DisplayNote notes={notes} setNotes={setNotes}></DisplayNote>}
+    </div>
+  );
+}
+
+function DisplayNote({ notes, setNotes }) {
+  function closeNote() {
+    setNotes(!notes);
+  }
+  return (
+    <div className="note-modal">
+      <button className="close-note" onClick={closeNote}>
+        X
+      </button>
+      <p>This is the note modal</p>
     </div>
   );
 }

@@ -23,15 +23,15 @@ createRoot(document.getElementById("root")).render(
       <Itinerary></Itinerary>
     </FeatureProvider> */}
     <FeatureProvider>
-      {/* <App></App>
-      <Homepage></Homepage>
-      <AboutUs></AboutUs>
-      <ContactUs></ContactUs> */}
+      {/* <App></App> */}
+      {/* <Homepage></Homepage> */}
+      {/* <AboutUs></AboutUs> */}
+      {/* <ContactUs></ContactUs> */}
       <ItineraryRender></ItineraryRender>
     </FeatureProvider>
   </StrictMode>
 
-  // <FeatureProvider>
+  //correct way-> <FeatureProvider>
   //   <App></App>
   // </FeatureProvider>
 );
